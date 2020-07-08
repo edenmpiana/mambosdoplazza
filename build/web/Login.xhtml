@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:p="http://primefaces.org/ui">
+  
+<h:head>
+  
+</h:head>
+  
+<h:body>
+ 
+    <center>
+<h:form>
+    <p:panel id="panel" header="New User">
+ 
+        <p:messages id="msgs" />
+ 
+        <h:panelGrid columns="3" cellpadding="5">
+            <p:outputLabel for="username" value="Username:" />
+            <p:inputText id="username" value="#{loginBean.user.username}" required="true" label="Username">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="username" display="icon" />
+ 
+            <p:outputLabel for="password" value="Password:" />
+            <p:password  value="#{loginBean.user.password}" id="password" label="password" required="true" feedback="true">
+                <f:validateLength minimum="2" />
+                <p:ajax update="msgLastname" event="keyup" />
+            </p:password>
+            <p:message for="username" id="msgLastname" display="icon" />
+ 
+        </h:panelGrid>
+        <center>
+        <p:commandButton value="Login" update="panel" action="#{loginBean.checkUser()}"/>
+        </center>
+    </p:panel>
+</h:form>
+    </center>
+</h:body>
+</html>
